@@ -127,17 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\move.cpp" />
     <ClCompile Include="..\..\..\..\Downloads\position.cpp" />
     <ClCompile Include="Lab04-Chess.cpp" />
+    <ClCompile Include="move.cpp" />
     <ClCompile Include="piece.cpp" />
+    <ClCompile Include="testChessPiece.cpp" />
     <ClCompile Include="testPossibleMoves.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\move.h" />
     <ClInclude Include="..\..\..\..\Downloads\pieceType.h" />
     <ClInclude Include="..\..\..\..\Downloads\position.h" />
+    <ClInclude Include="move.h" />
     <ClInclude Include="piece.h" />
+    <ClInclude Include="testChessPiece.h" />
     <ClInclude Include="testPossibleMoves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

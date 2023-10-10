@@ -2,12 +2,15 @@
 //
 
 #include <iostream>
+
+#include "testChessPiece.h"
 #include "testPossibleMoves.h"
 
 int main()
 {
     PossibleMovesTest test;
-    test.run();
-    std::cout << "Hello World!\n";
+    //test.run();
+    ChessPieceTest testPiece;
+    testPiece.run();
 }
 

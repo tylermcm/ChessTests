@@ -14,6 +14,10 @@
 #include <iostream>
 
 
+bool areSetsEqual(const std::set<int>& a, const std::set<int>& b) {
+    return a == b;
+}
+
 /*************************************
   * Default position
   * +---a--b--c--d--e--f--g--h---+
@@ -46,6 +50,11 @@ void PossibleMovesTest::pawn_start()
    set<int> moves = piece.getPossibleMoves(board, location);
    areEqual = areSetsEqual(moves, { 16, 24 });
    assert(areEqual);
+   for (const auto& elem : moves)
+   {
+       cout << elem << ' ';
+   }
+   cout << endl;
    cout << "pawn_start test passed" << endl;
 }
 
@@ -65,6 +74,12 @@ void PossibleMovesTest::pawn_conversion()
    set<int> moves = piece.getPossibleMoves(board, location);
    areEqual = areSetsEqual(moves,set<int>{57});
    //assert(areEqual);
+   for (const auto& elem : moves)
+   {
+       cout << elem << ' ';
+   }
+   cout << endl;
+
    cout << "pawn_conversion test passed" << endl;
 }
 
@@ -84,6 +99,12 @@ void PossibleMovesTest::pawn_enpassant()
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, set<int>{43, 44});
     //assert(areEqual);
+    for (const auto& elem : moves)
+    {
+        cout << elem << ' ';
+    }
+    cout << endl;
+
     cout << "pawn_enpassant test passed" << endl;
 
 }
@@ -104,6 +125,12 @@ void PossibleMovesTest::pawn_capture()
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, set<int> { 19, 27, 20 });
     //assert(areEqual);
+    for (const auto& elem : moves)
+    {
+        cout << elem << ' ';
+    }
+    cout << endl;
+
     cout << "pawn_capture test passed" << endl;
 
 }
@@ -124,6 +151,12 @@ void PossibleMovesTest::pawn_no_moves()
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, {});
     assert(areEqual);
+    for (const auto& elem : moves)
+    {
+        cout << elem << ' ';
+    }
+    cout << endl;
+
     cout << "pawn_no_moves test passed" << endl;
 
 }
@@ -144,6 +177,12 @@ void PossibleMovesTest::knight_normal()
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 16, 18 });
     assert(areEqual);
+    for (const auto& elem : moves)
+    {
+        cout << elem << ' ';
+    }
+    cout << endl;
+
     cout << "knight_normal test passed" << endl;
 }
 
@@ -163,6 +202,12 @@ void PossibleMovesTest::knight_capture()
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 8, 16 });
     //assert(areEqual);
+    for (const auto& elem : moves)
+    {
+        cout << elem << ' ';
+    }
+    cout << endl;
+
     cout << "knight_capture test passed" << endl;
 
 }
@@ -203,6 +248,12 @@ void PossibleMovesTest::king_normal()
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 5, 12 });
     //assert(areEqual);
+    for (const auto& elem : moves)
+    {
+        cout << elem << ' ';
+    }
+    cout << endl;
+
     cout << "king_normal test passed" << endl;
 
 }

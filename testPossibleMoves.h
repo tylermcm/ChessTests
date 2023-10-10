@@ -23,9 +23,7 @@ public:
     bool result;
     Piece piece;
     bool areEqual;
-    bool areSetsEqual(const std::set<int>& a, const std::set<int>& b) {
-        return a == b;
-    }
+
     void run()
     {
         // get possible
