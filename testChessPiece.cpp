@@ -110,11 +110,10 @@ void ChessPieceTest::testIsWhitePawn() {
 }
 
 void ChessPieceTest::testIsEmptySpace() {
-    if (board[16] == ' ') {
-        // Replace with your own logic if needed
-        cout << "testIsEmptySpace passed" << endl;
-    }
+    assert(board[16] == ' ');
+    cout << "testIsEmptySpace passed" << endl;
 }
+
 
 void ChessPieceTest::testIsNotBlack() {
     if (board[48] == 'p') {
