@@ -9,7 +9,7 @@
 int main()
 {
     PossibleMovesTest test;
-    //test.run();
+    test.run();
     ChessPieceTest testPiece;
     testPiece.run();
 }

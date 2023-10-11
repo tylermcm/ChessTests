@@ -89,8 +89,8 @@ void PossibleMovesTest::pawn_enpassant()
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
       'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', 'P', 'p', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+      ' ', ' ', ' ', 'p', 'P', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
@@ -98,7 +98,7 @@ void PossibleMovesTest::pawn_enpassant()
     int location = 35;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, set<int>{43, 44});
-    //assert(areEqual);
+    assert(areEqual);
     for (const auto& elem : moves)
     {
         cout << elem << ' ';
@@ -113,18 +113,18 @@ void PossibleMovesTest::pawn_capture()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p',
+      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      ' ', ' ', ' ', ' ', 'P', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', 'p', ' ', ' ', ' ',
       'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 11;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, set<int> { 19, 27, 20 });
-    //assert(areEqual);
+    assert(areEqual);
     for (const auto& elem : moves)
     {
         cout << elem << ' ';
@@ -139,12 +139,12 @@ void PossibleMovesTest::pawn_no_moves()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', ' ', 'p', 'p', 'p', 'p', 'p', 'p',
+      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      ' ', 'P', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', 'p', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
+      'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 9;
@@ -190,18 +190,18 @@ void PossibleMovesTest::knight_capture()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      ' ', 'p', ' ', 'p', 'p', 'p', 'p', 'p',
+      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      'P', ' ', 'P', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'p', ' ', 'p', ' ', ' ', ' ', ' ', ' ',
       'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 1;
     set<int> moves = piece.getPossibleMoves(board, location);
-    areEqual = areSetsEqual(moves, { 8, 16 });
-    //assert(areEqual);
+    areEqual = areSetsEqual(moves, { 16, 18 });
+    assert(areEqual);
     for (const auto& elem : moves)
     {
         cout << elem << ' ';
@@ -216,18 +216,18 @@ void PossibleMovesTest::knight_no_moves()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      ' ', 'p', ' ', 'p', 'p', 'p', 'p', 'p',
+      'p', ' ', 'p', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', ' ', 'P', ' ', ' ', ' ', ' ', ' ',
-      ' ', 'P', ' ', 'P', 'P', 'P', 'P', 'P',
+      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 1;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, {});
-    //assert(areEqual);
+    assert(areEqual);
     cout << "knight_no_moves test passed" << endl;
 
 }
@@ -235,19 +235,19 @@ void PossibleMovesTest::knight_no_moves()
 void PossibleMovesTest::king_normal()
 {
     char board[64] = {
-      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      'r', 'n', 'b', 'q', 'k', ' ', 'n', 'r',
+      'p', 'p', 'p', 'p', ' ', 'b', 'p', 'p',
+      ' ', ' ', ' ', ' ', 'p', 'p', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', 'P', 'P', ' ', ' ',
-      'P', 'P', 'P', 'P', ' ', 'B', 'P', 'P',
-      'R', 'N', 'B', 'Q', 'K', ' ', 'N', 'R'
+      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
+      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 4;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 5, 12 });
-    //assert(areEqual);
+    assert(areEqual);
     for (const auto& elem : moves)
     {
         cout << elem << ' ';
@@ -262,12 +262,12 @@ void PossibleMovesTest::king_capture()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p',
+      'p', 'p', 'p', 'p', 'P', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', 'P', 'P', 'P', 'p', 'P', 'P', 'P',
+      'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 4;
@@ -292,8 +292,8 @@ void PossibleMovesTest::king_no_moves()
     };
     int location = 4;
     set<int> moves = piece.getPossibleMoves(board, location);
-    areEqual = areSetsEqual(moves, { 0 });
-    //assert(areEqual);
+    areEqual = areSetsEqual(moves, { });
+     assert(areEqual);
     cout << "king_no_moves test passed" << endl;
 
 }
@@ -301,19 +301,19 @@ void PossibleMovesTest::king_no_moves()
 void PossibleMovesTest::king_castle()
 {
     char board[64] = {
-      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
+      'r', ' ', ' ', ' ', 'k', 'b', 'n', 'r',
       'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-      'R', ' ', ' ', ' ', 'K', 'B', 'N', 'R'
+      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 4;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 3, 2 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "king_castle test passed" << endl;
 
 }
@@ -321,19 +321,19 @@ void PossibleMovesTest::king_castle()
 void PossibleMovesTest::queen_normal()
 {
     char board[64] = {
-      'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r',
+      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
       'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P',
-      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
+      'R', 'N', 'B', ' ', 'K', 'B', 'N', 'R'
     };
     int location = 3;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 11, 19, 27, 35, 43, 51, 59 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "queen_normal test passed" << endl;
 
 }
@@ -342,18 +342,18 @@ void PossibleMovesTest::queen_capture()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P',
+      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 3;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 11, 19, 27, 35, 43, 51 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "queen_capture test passed" << endl;
 
 }
@@ -381,19 +381,19 @@ void PossibleMovesTest::queen_no_moves()
 void PossibleMovesTest::rook_normal()
 {
     char board[64] = {
-      ' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
+      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
       ' ', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
+      ' ', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 0;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 8, 16, 24, 32, 40, 48, 56 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "rook_normal test passed" << endl;
 
 }
@@ -402,7 +402,7 @@ void PossibleMovesTest::rook_capture()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      ' ', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
@@ -413,7 +413,7 @@ void PossibleMovesTest::rook_capture()
     int location = 0;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 8, 16, 24, 32, 40, 48 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "rook_capture test passed" << endl;
 
 }
@@ -442,18 +442,18 @@ void PossibleMovesTest::bishop_normal()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      'p', ' ', 'p', 'p', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P',
+      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 2;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 9, 16 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "bishop_normal test passed" << endl;
 
 }
@@ -462,18 +462,18 @@ void PossibleMovesTest::bishop_capture()
 {
     char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      'p', ' ', 'p', 'p', 'p', 'p', 'p', 'p',
+      'P', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'p', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P',
+      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
     int location = 2;
     set<int> moves = piece.getPossibleMoves(board, location);
     areEqual = areSetsEqual(moves, { 9, 16 });
-    //assert(areEqual);
+    assert(areEqual);
     cout << "bishop_capture test passed" << endl;
 
 }
@@ -509,10 +509,10 @@ void PossibleMovesTest::isNotWhite_true()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 0;
-    int col = 0;
+    int row = 7;
+    int col = 7;
     result = piece.isNotWhite(board, row, col);
-    //assert(result == true);
+    assert(result == true);
     cout << "isNotWhite_true test passed" << endl;
 
 }
@@ -529,10 +529,10 @@ void PossibleMovesTest::isNotWhite_false()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 7;
-    int col = 7;
+    int row = 0;
+    int col = 0;
     result = piece.isNotWhite(board, row, col);
-    //assert(result == false);
+    assert(result == false);
     cout << "isNotWhite_false test passed" << endl;
 
 }
@@ -549,9 +549,9 @@ void PossibleMovesTest::isNotBlack_true()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 7;
-    int col = 7;
-    result = piece.isNotWhite(board, row, col);
+    int row = 0;
+    int col = 0;
+    result = piece.isNotBlack(board, row, col);
     assert(result == true);
     cout << "isNotBlack_true test passed" << endl;
 
@@ -569,9 +569,9 @@ void PossibleMovesTest::isNotBlack_false()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 0;
-    int col = 0;
-    result = piece.isNotWhite(board, row, col);
+    int row = 7;
+    int col = 7;
+    result = piece.isNotBlack(board, row, col);
     assert(result == false);
     cout << "isNotBlack_false test passed" << endl;
 
@@ -589,9 +589,9 @@ void PossibleMovesTest::isWhite_true()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 7;
-    int col = 7;
-    result = piece.isNotWhite(board, row, col);
+    int row = 0;
+    int col = 0;
+    result = piece.isWhite(board, row, col);
     assert(result == true);
     cout << "isWhite_true test passed" << endl;
 
@@ -609,9 +609,9 @@ void PossibleMovesTest::isWhite_false()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 0;
-    int col = 0;
-    result = piece.isNotWhite(board, row, col);
+    int row = 7;
+    int col = 7;
+    result = piece.isWhite(board, row, col);
     assert(result == false);
     cout << "isWhite_false test passed" << endl;
 
@@ -629,10 +629,10 @@ void PossibleMovesTest::isBlack_true()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 0;
-    int col = 0;
-    result = piece.isNotWhite(board, row, col);
-    //assert(result == true);
+    int row = 7;
+    int col = 7;
+    result = piece.isBlack(board, row, col);
+    assert(result == true);
     cout << "isBlack_true test passed" << endl;
 
 }
@@ -649,10 +649,10 @@ void PossibleMovesTest::isBlack_false()
         'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
         'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
     };
-    int row = 7;
-    int col = 7;
-    result = piece.isNotWhite(board, row, col);
-    //assert(result == false);
+    int row = 0;
+    int col = 0;
+    result = piece.isBlack(board, row, col);
+    assert(result == false);
     cout << "isBlack_false test passed" << endl;
 
 }

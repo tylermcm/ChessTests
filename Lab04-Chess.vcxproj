@@ -127,10 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\position.cpp" />
     <ClCompile Include="Lab04-Chess.cpp" />
     <ClCompile Include="move.cpp" />
     <ClCompile Include="piece.cpp" />
+    <ClCompile Include="position.cpp" />
     <ClCompile Include="testChessPiece.cpp" />
     <ClCompile Include="testPossibleMoves.cpp" />
   </ItemGroup>

@@ -18,7 +18,7 @@ set<int> Piece::getPossibleMoves(const char* board, int location) {
    {
       c = col;
       r = row - 2;
-      if (row == 6 && board[r * 8 + c] == ' ')
+      if (row == 6 && board[r * 8 + c] == ' ' && board[(r + 1) * 8 + c] == ' ')
          possible.insert(r * 8 + c);  // forward two blank spaces
       r = row - 1;
       if (r >= 0 && board[r * 8 + c] == ' ')
@@ -29,13 +29,19 @@ set<int> Piece::getPossibleMoves(const char* board, int location) {
       c = col + 1;
       if (isWhite(board, r, c))
          possible.insert(r * 8 + c);    // attack right
+      r = row;
+      if (isWhite(board, r, c) && board[(r + 1) * 8 + c] == ' ')
+          possible.insert((r - 1) * 8 + c); //enpassant right
+      c = col - 1;
+      if (isWhite(board, r, c) && board[(r + 1) * 8 + c] == ' ')
+          possible.insert((r - 1) * 8 + c); //enpassant left
       // what about en-passant and pawn promotion
    }
    if (board[location] == 'p')
    {
       c = col;
       r = row + 2;
-      if (row == 1 && board[r * 8 + c] == ' ')
+      if (row == 1 && board[r * 8 + c] == ' ' && board[(r - 1) * 8 + c] == ' ')
          possible.insert(r * 8 + c);  // forward two blank spaces
       r = row + 1;
       if (r < 8 && board[r * 8 + c] == ' ')
@@ -46,6 +52,12 @@ set<int> Piece::getPossibleMoves(const char* board, int location) {
       c = col + 1;
       if (isBlack(board, r, c))
          possible.insert(r * 8 + c);      // attack right
+      r = row;
+      if (isBlack(board, r, c) && board[(r + 1) * 8 + c] == ' ')
+          possible.insert((r + 1) * 8 + c); //enpassant right
+      c = col - 1;
+      if (isBlack(board, r, c) && board[(r + 1) * 8 + c] == ' ')
+          possible.insert((r + 1) * 8 + c); //enpassant left
       // what about en-passant and pawn promotion
    }
 
@@ -77,7 +89,7 @@ set<int> Piece::getPossibleMoves(const char* board, int location) {
    //
    if (board[location] == 'K' || board[location] == 'k')
    {
-      RC moves[8] =
+      RC moves[10] =
       {
          {-1,  1}, {0,  1}, {1,  1},
          {-1,  0},          {1,  0},
@@ -87,10 +99,54 @@ set<int> Piece::getPossibleMoves(const char* board, int location) {
       {
          r = row + moves[i].row;
          c = col + moves[i].col;
+         //while (location == 4 || location = 60)
          if (amBlack && isNotBlack(board, r, c))
             possible.insert(r * 8 + c);
          if (!amBlack && isNotWhite(board, r, c))
             possible.insert(r * 8 + c);
+      }
+      
+      if (location == 4)
+      {
+          if (board[0] == 'r')
+          {
+              while (col > 2 && board[row * 8 + col - 1] == ' ')
+              {
+                  col -= 1;
+              }
+              if (col == 2)
+                  possible.insert(row * 8 + col);
+          }
+          else if (board[7] == 'r')
+          {
+              while (col < 6 && board[row * 8 + col] == ' ')
+              {
+                  col += 1;
+              }
+              if (col == 6)
+                  possible.insert(row * 8 + col);
+          }
+      }
+      else if (location == 60)
+      {
+          if (board[56] == 'R')
+          {
+              while (col > 58 && board[row * 8 + col] == ' ')
+              {
+                  col -= 1;
+              }
+              if (col == 58)
+                  possible.insert(row * 8 + col);
+          }
+          else if (board[63] == 'R')
+          {
+              while (col < 62 && board[row * 8 + col] == ' ')
+              {
+                  col += 1;
+              }
+              if (col == 62)
+                  possible.insert(row * 8 + col);
+          }
       }
       // what about castling?
    }
